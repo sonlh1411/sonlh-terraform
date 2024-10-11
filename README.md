@@ -61,3 +61,5 @@
     - Chọn đúng workspace khi run
     - Sử dụng -var-file="path to file tfvars"
 
+13. Terrascan: https://github.com/tenable/terrascan
+

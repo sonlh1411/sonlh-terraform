@@ -23,5 +23,15 @@ jobs:
           terraform_wrapper: false
       - name: Terraform Init
         run: terraform init
+      - name: Create production workspace
+        run: terraform workspace new prod
+      - name: Checkout production workspace
+        run: terraform workspace select prod
+      - name: Verify tfvars
+        run: terraform plan -var-file=./envs/prod.tfvars
       - name: Terraform Workspace
-        run: terraform workspace show
+        run: terraform workspace show | grep prod | wc -l
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}

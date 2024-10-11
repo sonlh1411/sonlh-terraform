@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "sonlh-tf-file"
+    bucket = "sonlh-tfstate"
     key    = "tfstate"
     region = "us-east-1"
   }
